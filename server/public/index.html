@@ -7,24 +7,27 @@
     <title>Document</title>
     <link href=“https://fonts.googleapis.com/css?family=Comfortaa” rel=“stylesheet”>
     <script src="./vendors/jquery-3.2.1.min.js"></script>
+    <script src="./vendors/angular.js"></script>
     <script src="./scripts/client.js"></script>
     <link rel="stylesheet" href="styles/styles.css">
 </head>
-<body>
+<body ng-app="PixieApp" ng-controller="PixieController as vm">
     <h1>Pixie Pet Hotel</h1>
     <h2 id = "subtitle"><i>THE</i> place for your pets to chill out.</h2>
     <div id="ownerDiv">
         <h3>Owner Registration</h2>
-        <span>First Name <input id="firstNameInput" type="text" placeholder="text"></span>
-        <span>Last Name <input id="lastNameInput" type="text" placeholder="text"></span>
-        <button id="registerButton">Register</button>
+        <span>First Name <input ng-model="vm.newOwner.first_name" id="firstNameInput" type="text" placeholder="text"></span>
+        <span>Last Name <input ng-model="vm.newOwner.last_name" id="lastNameInput" type="text" placeholder="text"></span>
+        <button ng-click="vm.addNewOwner(vm.newOwner)" id="registerButton">Register</button>
     </div>
     <div id="petDiv">
         <h3>Pets</h2>
         <span>Owner Name 
-            <select name="Owner Name" id="ownerId">
+            <select ng-options="option.name for option in data.availableOptions track by option.id"
+            ng-model="data.selectedOption" name="Owner Name" id="ownerId">
                 <!-- Below is an example of an Owner Names; actual values will be appended:
                 <option value="exampleLastNameFirstName">exampleFirstName exampleLastName</option> -->
+                <option>{{owner.first_name}} {{owner.last_name}}</option>
             </select>
         </span>
         <span>Pet Name <input id="petNameInput" type="text" placeholder="text"></span>

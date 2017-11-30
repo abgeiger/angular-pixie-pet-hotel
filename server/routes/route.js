@@ -74,7 +74,7 @@ router.post('/users', function (req, res) {
         } else {
             //connected to database
             db.query(`INSERT INTO owners("first_name", "last_name")
-            VALUES ($1,$2)`,[req.body.firstName, req.body.lastName], function (errorMakingQuery, result) {
+            VALUES ($1,$2)`,[req.body.first_name, req.body.last_name], function (errorMakingQuery, result) {
                 done();
                 if (errorMakingQuery) {
                     console.log('error making query', errorMakingQuery);
